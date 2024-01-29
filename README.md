@@ -7,7 +7,7 @@ git clone https://github.com/tbounsiar/ceph-vb.git
 
 Install vagrant hostmanager plugin
 ```shell
-cd ceph-hv
+cd ceph-vb
 vagrant plugin install hostmanager
 ```
 
@@ -29,8 +29,8 @@ sudo apt update
 sudo apt install ansible
 
 ansible-galaxy install -r requirements.yml
-cp site.yml.sample site.yml
 
+cp site.yml.sample site.yml
 cp group_vars/all.yml.sample group_vars/all.yml
 cp group_vars/osds.yml.sample group_vars/osds.yml
 ````
