@@ -1,0 +1,17 @@
+[mons]
+node-[1:3]
+
+[osds]
+node-[1:5]
+
+[mdss]
+node-[1:3]
+
+[nfss]
+node-[1:3]
+
+[mgrs]
+node-4
+
+[monitoring]
+node-5
