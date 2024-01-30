@@ -41,7 +41,7 @@ Update `all.yml`
 ceph_origin: repository
 ceph_repository: community
 ceph_stable_release: pacific
-monitor_interface: eth0
+monitor_interface: eth1
 journal_size: 1024
 public_network: 192.168.11.0/24
 cluster_network: 192.168.10.0/24
@@ -65,6 +65,6 @@ devices:
 copy inventories dir from ceph-hv to ceph-ansible
 
 ````shell
-ansible -i inventories/hyperv all -m ping
+ansible -i inventories/vbox all -m ping
 ansible-playbook -i inventories/hyperv site.yml -v
 ````

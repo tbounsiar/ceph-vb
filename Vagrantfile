@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     # Customize the amount of memory on the VM:
     vb.customize ["modifyvm", :id, "--groups", "/ceph"]
-    vb.memory = 2048
+    vb.memory = 4096
     vb.cpus = 4
   end
 
@@ -33,14 +33,17 @@ Vagrant.configure("2") do |config|
       node.vm.provider :virtualbox do |vb|
         vb.name = name
         (1..2).each do |d|
-          disk_file = ".vagrant/machines/#{name}/virtualbox/disk-#{d}.vdi"
+          disk_file = File.absolute_path(".vagrant/machines/#{name}/virtualbox/disk-#{d}.vdi")
           unless File.exist?(disk_file)
             vb.customize ['createhd', '--filename', disk_file, '--size', '10240']
+            if d == 1
+              vb.customize ['storagectl', :id, '--name', 'OSD Controller', '--add', 'SCSI']
+            end
           end
           vb.customize [
                          'storageattach', :id,
-                         '--storagectl', 'SCSI',
-                         '--port', 1 + d,
+                         '--storagectl', 'OSD Controller',
+                         '--port', d - 1,
                          '--device', 0,
                          '--type', 'hdd',
                          '--medium', disk_file
