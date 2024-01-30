@@ -66,5 +66,5 @@ copy inventories dir from ceph-hv to ceph-ansible
 
 ````shell
 ansible -i inventories/vbox all -m ping
-ansible-playbook -i inventories/hyperv site.yml -v
+ansible-playbook -i inventories/vbox site.yml -v
 ````
